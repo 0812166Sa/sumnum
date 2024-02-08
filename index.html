@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>name</title>
+</head>
+
+<body>
+
+  <p>Введите ваше имя:</p>
+  <input id="elem" value=""><br>
+  <p>Введите число месяц и год вашего рождения</p>
+  <input id="elem2" value=""><br>
+  <input type="submit" id="button"><br>
+
+  <script>
+
+    let elem = document.querySelector('#elem');
+    let elem2 = document.querySelector('#elem2');
+    let button = document.querySelector('#button');
+
+    button.addEventListener('click', function () {
+      let input = elem.value;
+      let input2 = elem2.value;
+      let ar = input.split('');
+      let ar2 = input2.split('');
+
+
+
+
+      let patt2 = /\b(\d{2})\.(\d{2})\.(\d{4})\b/g;
+      let patt = /[А-Яа-яЁё]{2,15}/;
+      let name = patt.test(input);
+      let year = patt2.test(input2);
+      /*
+            if (name) {
+              document.write('yes');
+            } else {
+              document.write('no');
+            }
+      
+            if (year) {
+              document.write('вы правильно ввели число месяц и год вашего рождения');
+            } else {
+              document.write('вы неправильно ввели число месяц и год вашего рождения');
+            }
+    */
+
+
+
+
+      let nums = {
+        1: ['а', 'и', 'с', 'ъ'],
+        2: ['б', 'й', 'т', 'ы'],
+        3: ['в', 'к', 'у', 'ь'],
+        4: ['г', 'л', 'ф', 'э'],
+        5: ['д', 'м', 'x', 'ю'],
+        6: ['e', 'н', 'ц', 'я'],
+        7: ['ё', 'о', 'ч'],
+        8: ['ж', 'п', 'ш'],
+        9: ['з', 'р', 'щ']
+
+      }
+      let sum = 0;
+      let sum2 = 0;
+      for (let j = 0; j < ar2.length; j++) {
+        sum2 = sum2 + Number(ar2[j]);
+        console.log(sum2);
+      }
+
+      console.log(sumDigitsRecursively(sum2));
+
+
+      for (let i = 0; i < ar.length; i++) {
+        let l = ar[i];
+
+        for (let num in nums) {
+          for (let letter of nums[num]) {
+
+            if (l === letter) {
+              sum = sum + Number(num);
+
+            }
+
+          }
+        }
+        //console.log(sum);
+        //console.log(sumDigitsRecursively(sum));
+
+      }
+
+
+
+    }
+
+    );
+
+
+
+
+
+    function sumDigits(n) {
+      let sum1 = 0;
+      while (n) {
+        digit = n % 10;
+        //console.log(digit);
+        sum1 += digit;
+        //console.log(sum1);
+        n = (n - digit) / 10;
+      }
+      return sum1;
+
+    }
+
+
+
+    function sumDigitsRecursively(n) {
+      let sum = sumDigits(n);
+      if (sum < 10)
+        return sum;
+      else
+        return sumDigitsRecursively(sum);
+    }
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
