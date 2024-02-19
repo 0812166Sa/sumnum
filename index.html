@@ -24,6 +24,9 @@
     let num_year; // число дня рождения
     let num_town; // число города
     let name_town; // сумма имени и дня рождения
+    let ar = [];
+    let ar2 = [];
+    let ar3 = [];
     let elem = document.querySelector('#elem');
     let elem2 = document.querySelector('#elem2');
     let button = document.querySelector('#button');
@@ -41,17 +44,14 @@
 
     }
 
+
     button.addEventListener('click', function () {
       let input = elem.value;
       let input2 = elem2.value;
       let input3 = town.value;
-      let ar = input.split('');
-      let ar2 = input2.split('');
-      let ar3 = input3.split('');
-
-
-
-
+      ar = input.split('');//имя
+      ar2 = input2.split('');//число рождения
+      ar3 = input3.split('');//город
 
       let patt2 = /\b(\d{2})\.(\d{2})\.(\d{4})\b/g;
       let patt = /[А-Яа-яЁё]{2,15}/;
@@ -73,17 +73,15 @@
 
 
 
-
-
       let sum = 0;
       let sum2 = 0;
+      /*
       for (let j = 0; j < ar2.length; j++) {
         sum2 = sum2 + Number(ar2[j]);
         //console.log(sum2);
       }
-      num_year = sumDigitsRecursively(sum2);
-
-
+      
+*/
 
       for (let i = 0; i < ar.length; i++) {
         let l = ar[i];
@@ -104,14 +102,61 @@
 
       }
 
+      num_year = sumDigitsRecursively(sum2);
       name_year = Number(num_name) + Number(num_year);
-      document.write('число имени' + num_name); '<br>'
-      document.write('число года' + num_year); '<br>'
+      // document.write('число имени' + num_name + '<br>')
+      //document.write('число года' + num_year) + '<br>'
+      //document.write(sumDigitsRecursively(name_year) + '<br>');
+      //document.write('число года' + sumDigitsRecursively(summa(ar2)));
 
-      document.write(sumDigitsRecursively(name_year)); '<br>';
+
     }
 
     );
+
+    function summa(arr) {
+      let sum = 0;
+
+      for (let k = 0; k < arr.length; k++) {
+        sum = sum + Number(arr[k]);
+
+      }
+      return sum;
+
+    }
+
+    function namemat(ar) {
+      let sum = 0;
+      for (let i = 0; i < ar.length; i++) {
+        let l = ar[i];
+
+        for (let num in nums) {
+          for (let letter of nums[num]) {
+
+            if (l === letter) {
+              sum = sum + Number(num);
+
+
+
+
+            }
+
+          }
+
+        }
+
+        //num_name = sumDigitsRecursively(sum);
+
+
+      }
+      console.log(sum);
+      console.log(sumDigitsRecursively(sum));
+    }
+    namemat(['c', 'о', 'ч', 'и']);
+
+
+
+
 
 
     function sumDigits(n) {
@@ -136,6 +181,7 @@
       else
         return sumDigitsRecursively(sum);
     }
+
 
 
 
